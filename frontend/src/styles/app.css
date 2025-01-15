@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  h1{
+    @apply text-center text-3xl text-icon;
+  }
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  /* [type="datetime-local"], */
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  textarea,
+  select {
+    /* DEFAULT STYLE */
+    @apply   bg-white border border-gray-300 w-full  rounded shadow-md focus:border-brand focus:ring-brand;
+    /* @apply appearance-none w-full bg-white border-gray-500 border space-y-2 space-x-3 text-base focus:outline-none focus:outline-offset-1 focus:ring-1 focus:ring-blue-600 focus:ring-offset-1 focus:ring-offset-white focus:border-brand rounded-lg; */
+    /* SELECTED STYLE */
+  }
+  svg{@apply fill-icon;}
+}
+
+@layer components{
+}
