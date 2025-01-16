@@ -8,13 +8,10 @@ import { createJWT } from "../utils/protect.js";
 const signup = Router();
 
 signup.route("/signup").post(async (req, res) => {
-  console.log("Request at : api/signup");
+  // console.log("Request at : api/signup");
   try {
     const { email, password } = req.body;
-console.log(req.body);
     const db = connectDatabase("learning");
-    // const user = await db.collection("users").findOne({ email: email });
-    // const db = getDBConnection("education");
     const user = await db.collection("users").findOne({ email: email });
     console.log("Connected", email, password);
     if (user) {
@@ -28,7 +25,7 @@ console.log(req.body);
     const verificationString = uuid();
     const startingInfo = {
       name: "",
-      eduQualification: "",
+      qualification: "",
       examStatus: "",
     };
     const result = await db.collection("users").insertOne({

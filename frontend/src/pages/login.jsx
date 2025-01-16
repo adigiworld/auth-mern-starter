@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useToken } from "../auth/useToken";
 
 const LogInPage = () => {
@@ -7,8 +7,8 @@ const LogInPage = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errMessage, setErrMessage] = React.useState("");
-  const onLoginClicked = async () => {
-    // e.preventDefault();
+  const onLoginClicked = async (e) => {
+    e.preventDefault();
     const response = await fetch("http://localhost:8080/api/login", {
       method: "POST",
       headers: {
@@ -33,9 +33,6 @@ const LogInPage = () => {
       window.location.href = "/userinfo";
       // return redirect("/userinfo", 200);
     }
-    // return redirect("/userinfo");
-    // console.log(token);
-    // return <Navigate to={"/userinfo"} />
   }
   return (
     <main>

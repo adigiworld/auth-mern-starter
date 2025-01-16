@@ -4,14 +4,16 @@ import { connectDatabase } from "../db.js";
 import { createJWT } from "../utils/protect.js";
 
 const user = Router();
+// user.route("/:userId").put(async (req, res) => {
 user.route("/:userId").put(async (req, res) => {
   console.log("Request at : api/users");
   const { userId } = req.params;
-  const updateInfo = (({ name, eduQualification, examStatus }) => ({
+  const updateInfo = (({ name, qualification, examStatus }) => ({
     name,
-    eduQualification,
+    qualification,
     examStatus,
   }))(req.body);
+  console.warn(updateInfo);
   // const { id, isVerified } = req.user;
   const { id } = req.user;
   if (id !== userId) {

@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, Navigate, useNavigate, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useToken } from "../auth/useToken";
 
 const SignUpPage = () => {
-  const [token, setToken] = useToken();
+  const [, setToken] = useToken();
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -11,8 +11,8 @@ const SignUpPage = () => {
   const [errMessage, setErrMessage] = React.useState("");
   // const history=useHistory();
 
-  const onSignUpClicked = async () => {
-    // e.preventDefault();
+  const onSignUpClicked = async (e) => {
+    e.preventDefault();
     const response = await fetch("http://localhost:8080/api/signup", {
       method: "POST",
       headers: {
@@ -38,8 +38,6 @@ const SignUpPage = () => {
       window.location.href = "/userinfo";
       // return redirect("/userinfo", 200);
     }
-
-    // <Navigate to={"/userinfo"} />
   }
   return (
     <main>
