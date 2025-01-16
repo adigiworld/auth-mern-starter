@@ -1,39 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { useToken } from "../auth/useToken";
 
-
 const LogInPage = () => {
-  const [token, setToken] = useToken();
+  const [, setToken] = useToken();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errMessage, setErrMessage] = React.useState("");
-  // const history=useHistory();
   const onLoginClicked = async () => {
-    // const response = await fetch("http://localhost:8080/api/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Content-Length": "<calculated when request is sent>",
-    //     "Host": "<calculated when request is sent>",
-    //     "Connection": "keep-alive",
-    //   },
-    //   mode: "cors",
-    //   body: JSON.stringify({ email: email, password: password }),
-    // })
-    // .then(res => { return res.data; }).catch(err => { console.error(err); });
-    // const response = await axios.post("http://localhost:8080/api/signup", { email: email, password: password })
-    const response = await axios({
+    // e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/login", {
       method: "POST",
-      // url: "/api/login",
-      url: "http://localhost:8080/api/login",
-      data: { email: email, password: password }
-    });
-    // const response = await axios.post("/api/signup", { email: email, password: password })
-    const { token } = response.data;
-    setToken(token);
+      headers: {
+        // "Content-Type": "application/json; charset=UTF-8",
+        "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "multipart/form-data",
+        // "Content-Type": "text/plain",
+        "Content-Length": "<calculated when request is sent>",
 
-    <Navigate to={"/userinfo"} />
+        "Host": "<calculated when request is sent>",
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive"
+      },
+      // mode: "cors",
+      body: JSON.stringify({ email: email, password: password }),
+    })
+    const { token } = await response.json();
+    setToken(token);
+    if (token) {
+      window.location.href = "/userinfo";
+      // return redirect("/userinfo", 200);
+    }
+    // return redirect("/userinfo");
+    // console.log(token);
+    // return <Navigate to={"/userinfo"} />
   }
   return (
     <main>

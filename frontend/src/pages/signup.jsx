@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Navigate, useNavigate, } from "react-router-dom";
 import { useToken } from "../auth/useToken";
-import axios from "axios";
 
 const SignUpPage = () => {
   const [token, setToken] = useToken();
@@ -11,14 +10,17 @@ const SignUpPage = () => {
   const [pwConfirm, setPwConfirm] = React.useState("");
   const [errMessage, setErrMessage] = React.useState("");
   // const history=useHistory();
+
   const onSignUpClicked = async () => {
     // e.preventDefault();
-    // const response = await fetch("http://localhost:8080/api/signup", {
-    const response = await fetch("/api/signup", {
+    const response = await fetch("http://localhost:8080/api/signup", {
       method: "POST",
       headers: {
         // "Content-Type": "application/json; charset=UTF-8",
         "Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "multipart/form-data",
+        // "Content-Type": "text/plain",
         "Content-Length": "<calculated when request is sent>",
 
         "Host": "<calculated when request is sent>",
@@ -26,20 +28,18 @@ const SignUpPage = () => {
         "Accept-Encoding": "gzip, deflate, br",
         "Connection": "keep-alive"
       },
-      mode: "cors",
+      // mode: "no-cors",
       body: JSON.stringify({ email: email, password: password }),
     });
-    // const response = await axios.post("/api/signup", { email: email, password: password })
-    //   .then(res => { return res.data; });
-    // const response = await axios({
-    //   method: "post", url: "http://localhost:8080/api/signup",
-    //   data: { email: email, password: password }
-    // });
-    // const response = await axios({ method: "post", url: "/api/signup", data: { email: email, password: password } });
-    const { token } = await response.data;
+    const { token } = await response.json();
     setToken(token);
+    // console.log(token);
+    if (token) {
+      window.location.href = "/userinfo";
+      // return redirect("/userinfo", 200);
+    }
 
-    // <Navigate to={"/"} />
+    // <Navigate to={"/userinfo"} />
   }
   return (
     <main>
