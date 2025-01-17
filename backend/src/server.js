@@ -23,7 +23,7 @@ app.get("/", (_req, res) => {
 
 app.use("/api", login);
 app.use("/api", signup);
-app.use("/api", email);
+app.use("/api/email", email);
 app.use("/api", forgotPassword);
 app.use("/api/users", protect, user);
 

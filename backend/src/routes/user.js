@@ -14,12 +14,14 @@ user.route("/:userId").put(async (req, res) => {
     examStatus,
   }))(req.body);
   console.warn(updateInfo);
-  // const { id, isVerified } = req.user;
-  const { id } = req.user;
+  const { id, isVerified } = req.user;
+  // const { id } = req.user;
   if (id !== userId) {
     return res.status(403).json({ message: "Not allowed to update this user's info" });
   }
-  // if (!isVerified) { return res.status(403).json({ message: "You need to verify your email, To update your info" }); }
+  if (!isVerified) {
+    return res.status(403).json({ message: "You need to verify your email, To update your info" });
+  }
   const db = connectDatabase("learning");
   const result = await db
     .collection("users")
@@ -37,8 +39,8 @@ user.route("/:userId").put(async (req, res) => {
       console.log(err);
       return err;
     });
-  // const { email, info } = result;
-  const { email, info, isVerified } = result;
+  const { email, info } = result;
+  // const { email, info, isVerified } = result;
   await createJWT({ id, email, info, isVerified })
     .then((token) => {
       return res.status(200).json({ token });

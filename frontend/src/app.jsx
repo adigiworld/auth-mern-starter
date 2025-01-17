@@ -14,6 +14,8 @@ import AboutPage from "./pages/about";
 import UserInfoPage from "./pages/userinfo";
 import NotFoundPage from "./pages/404";
 import ExamPage from "./pages/exam";
+import VerifyEmailPage from "./pages/verifyEmail";
+import VerifyEmailMessagePage from "./pages/verifyEmailMessage";
 
 // const LogInPage = lazy(() => import("./pages/login"));
 // const SignUpPage = lazy(() => import("./pages/signup"));
@@ -39,6 +41,8 @@ const App = () => {
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/userinfo" element={<UserInfoPage />} />
           </Route>
+          <Route path="/email-verify" element={<VerifyEmailMessagePage />} />
+          <Route path="/verify-email/:verificationString" element={<VerifyEmailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <footer>

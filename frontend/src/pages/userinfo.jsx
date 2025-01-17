@@ -6,7 +6,7 @@ import axios from "axios";
 const UserInfoPage = () => {
   const user = useUser();
   const [token, setToken] = useToken();
-  const { id, email, info } = user;
+  const { id, email, isVerified, info } = user;
   const [name, setName] = useState(info.name || "");
   const [qualification, setQualofication] = useState(info.qualification || "");
   const [examStatus, setExamstatus] = useState(info.examStatus || "");
@@ -70,6 +70,7 @@ const UserInfoPage = () => {
     <main>
       <h1>User Info Page</h1>
       <section>
+        {!isVerified && <div><p>You won't make any changes until you verify your email!</p></div>}
         {successMessage && <div><p>Info updated successfully</p></div>}
         {errorMessage && <div><p>Info update failed</p></div>}
       </section>

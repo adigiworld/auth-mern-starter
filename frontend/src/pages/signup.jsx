@@ -35,7 +35,7 @@ const SignUpPage = () => {
     setToken(token);
     // console.log(token);
     if (token) {
-      window.location.href = "/userinfo";
+      window.location.href = "/email-verify";
       // return redirect("/userinfo", 200);
     }
   }
