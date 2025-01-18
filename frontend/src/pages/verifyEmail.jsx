@@ -43,18 +43,25 @@ const VerifyEmailPage = () => {
   if (isLoading) { return <p>Loading...</p> }
   if (!isSuccess) {
     return (
-      <main>
+      <main
+        className=" mx-auto mt-5 w-96 bg-gray-50 rounded-lg border overflow-hidden flex flex-col align-middle items-center py-7">
         <h1>Fail to Verify...</h1>
-        <p>Somthing went wrong while trying to verify your email.</p>
-        <button onClick={() => window.location.href = "/signup"}>Back to Signup page</button>
+        <p className="px-4 py-3">Somthing went wrong while trying to verify your email.</p>
+        <button onClick={() => window.location.href = "/signup"}
+          className="text-link hover:text-link-hover hover:bg-icon-hover active:bg-icon bg-icon rounded-md flex items-center mt-4 justify-center px-3 h-10 "
+        >Back to Signup page</button>
       </main>
     )
   }
   return (
-    <main>
+    <main
+      className=" mx-auto mt-5 w-96 bg-gray-50 rounded-lg border overflow-hidden flex flex-col align-middle items-center py-7"
+    >
       <h1>Success!</h1>
       <p>Thanks for verifying your email</p>
-      <button onClick={() => window.location.href = "/userinfo"}>Got to User Info page</button>
+      <button onClick={() => window.location.href = "/userinfo"}
+        className="text-link hover:text-link-hover hover:bg-icon-hover active:bg-icon bg-icon rounded-md flex items-center mt-4 justify-center px-3 h-10 "
+      >Got to User Info page</button>
     </main>
   );
 }
