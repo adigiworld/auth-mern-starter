@@ -104,7 +104,7 @@ const UserInfoPage = () => {
             <hr />
             <div className="mt-3 py-2 flex flex-col gap-4 items-center justify-center ">
               <button onClick={updateUserInfo}
-                disabled={!name || !qualification || !examStatus}
+                disabled={!name || !qualification || !examStatus || isVerified}
                 className={`${!name || !qualification || !examStatus ? "disabled:bg-icon-hover " : ""} text-link hover:text-link-hover hover:bg-icon-hover active:bg-icon bg-icon rounded-md flex items-center justify-center w-full h-10 `}>
                 Update Info
               </button>

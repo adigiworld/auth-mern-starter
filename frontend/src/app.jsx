@@ -16,6 +16,8 @@ import NotFoundPage from "./pages/404";
 import ExamPage from "./pages/exam";
 import VerifyEmailPage from "./pages/verifyEmail";
 import VerifyEmailMessagePage from "./pages/verifyEmailMessage";
+import ForgotPasswordPage from "./pages/forgotPassword";
+import ResetPasswordPage from "./pages/resetPassword";
 
 // const LogInPage = lazy(() => import("./pages/login"));
 // const SignUpPage = lazy(() => import("./pages/signup"));
@@ -43,6 +45,8 @@ const App = () => {
           </Route>
           <Route path="/email-verify" element={<VerifyEmailMessagePage />} />
           <Route path="/verify-email/:verificationString" element={<VerifyEmailPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password/:passwordResetCode" element={<ResetPasswordPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <footer>
